@@ -1,0 +1,10 @@
+#IntelliJ IDEA
+*.exe
+*.*~
+*.iml
+/bin
+/pkg
+.idea
+id_rsa
+id_rsa.pub
+test.html

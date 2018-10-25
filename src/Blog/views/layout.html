@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+{{if .blogList}}
+{{range $index,$work:= .blogList}}{{if eq $index 0}}<title>{{.User.Name}}的博客</title>{{end}}{{end}}
+{{else}}{{with .blogContent}}<title>{{.User.Name}}的博客</title>{{end}}
+{{end}}
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+{{.Head}}
+</head>
+<body>
+<div id="loading" class="spanner-bg">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <p>加载中</p>
+</div>
+<header class="header">
+    <div id="mySidenav" class="sidenav">
+        <div class="closebtn" onclick="menuAnimation(this)"><span>&times;</span></div>
+        <a href="/blog">首页</a>
+    {{range .navList}}<a href="/blog/category/{{.Id}}">{{.Name}}</a>{{end}}
+    </div>
+    <div class="menuIcon" onclick="menuAnimation(this)">
+        <div class="icon1"></div>
+        <div class="icon2"></div>
+        <div class="icon3"></div>
+    </div>
+
+    <span class="headerTitle">{{.BlogTitle}}</span>
+    <span class="headerWrite"><a target="_self" href="{{.Action}}">{{.ActionName}}</a></span>
+</header>
+{{.LayoutContent}}
+<footer class="footer">
+    <div class="f-box">
+        <div class="aboutme">
+            <ul>
+                <li><a href="mailto:hudsvi@139.com">个人邮箱</a></li>
+                <li><a href="https://github.com/Hudsvi/beegoBlog">Github地址</a></li>
+                <li><a href="tel:13594777290">联系我</a></li>
+            </ul>
+        </div>
+        <div class="copyright"><span>Copyright © 2018 By Hudsvi, All Rights Reserved.</span></div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<div class="article-div">
+{{with .blogContent}}
+    <h3 class="title">{{.Title}}</h3>
+    <div class="info-div">
+        <span class="user">{{.User.Name}}</span>
+        <span class="date">{{.Created}}</span>
+        <img class="folder" src="/static/img/folder.png"/>
+        <span class="work"><a href="javascript:void(0);" onclick="go('/blog/works/{{.User.Phone}}?work_id={{.Work.Id}}')">{{.Work.Name}}</a></span>
+    </div>
+{{end}}
+    <div class="tag-div">
+        <label>{{with .blogContent}}{{range .Tags}}<span class="category">{{.Name}}</span>{{end}}{{end}}</label>
+        </ul>
+    </div>
+</div>
+<div class="line"></div>
+<div class="content">
+{{with .blogContent}}
+    {{str2html .Content}}
+    {{end}}
+</div>
+
+<p class="end-content">---End---</p>
+<div class="line"></div>
+
+<div class="comment-div">
+    <div class="cmtNum">
+    {{with .blogContent}}
+        <span>阅读数({{.ReadingNums}})</span><span>总评论({{.CommentNums}})</span>
+    {{end}}
+    </div>
+{{with .blogContent}}
+    <form id="publishComment" action="/blog/article/{{.Id}}" method="post">
+        <input id="datetime" type="hidden" name="datetime"/>
+        <input id="uuid" type="hidden" name="uuid"/>
+        <textarea id="myContent" name="cmtContent"></textarea>
+        <input type="button" value="发表评论" id="btnComment" onclick="submitForm()"/>
+    </form>
+{{end}}
+
+</div>
+<div class="line"></div>
+<p class="label">最新评论</p>
+{{range .cmtList}}
+<div class="cmtlist-div">
+    <div class="cmtItem-div">
+        <img src="{{.Visitor.Portrait}}"/>
+        <div class="cmtInfo">
+            <p>{{.Visitor.Id}}</p>
+            <span>{{.Floor}}楼.</span><span>{{.Time}}</span>
+        </div>
+    </div>
+    <div class="cmtContent">
+    {{str2html .Content}}
+    </div>
+</div>
+{{end}}
+<p class="end-content">---End---</p>
+
+

@@ -1,0 +1,261 @@
+/*==========初始化各标签的默认属性=========*/
+body,
+div,
+h2,
+h3,
+ul,
+li,
+a,
+p,
+dl,
+dd,
+span {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-family: "Lato", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    transition: background-color .5s;
+    padding-top: 3.5em;
+    width: 100%;
+    background-color: white;
+}
+
+.header {
+    width: 100%;
+    height: 3em;
+    position: fixed;
+    top: 0;
+    background-color: black;
+    box-shadow: 0 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.1);
+}
+
+.headerTitle {
+    width: 100%;
+    float: left;
+    height: 3em;
+    padding: 0.7em 0;
+    text-align: center;
+    color: white;
+    font-size: 1.1em;
+}
+
+.headerWrite {
+    position: fixed;
+    right: 0;
+}
+
+.headerWrite a {
+    height: 3em;
+    padding: 1em 0;
+    color: white;
+    line-height: 3em;
+    font-size: 1em;
+    margin-right: 1em;
+
+}
+
+.headerWrite a:hover {
+    cursor: pointer;
+}
+
+.logo {
+    position: fixed;
+    left: 2.5em;
+    color: white;
+    margin-left: 0.5em;
+    height: 3em;
+    outline: none;
+    line-height: 3em;
+}
+
+.logo .b1 {
+    font-size: 1.3em;
+}
+
+.logo .b2 {
+    font-size: 1.1em;
+}
+
+/*=============menuIcon的样式===============*/
+.menuIcon {
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    margin: 0.55em 0 0 1em;
+
+}
+
+/*1.5=0.15*3+0.2*6*/
+.icon1, .icon2, .icon3 {
+    width: 1.3em;
+    background-color: white;
+    height: 0.1em;
+    margin: 0.4em 0;
+    transition: 0.4s;
+}
+
+/*下面代码是菜单动画*/
+/* This is to rotate first icon */
+.change .icon1 {
+    /*-webkit-transform: rotate(-42deg) translate(-0.1em, 0);*/
+    /*transform-origin: 100% 0%;*/
+    /*-webkit-transform-origin: 100% 0%;*/
+    /*transform: rotate(-42deg) translate(-0.1em, 0);*/
+}
+
+/* This is to fade out second icon */
+.change .icon2 {
+    /*opacity: 0;*/
+}
+
+/* This is to rotate last icon */
+.change .icon3 {
+    /*-webkit-transform: rotate(42deg) translate(0.1em, 0);*/
+    /*transform-origin: 100% 0%;*/
+    /*-webkit-transform-origin: 100% 0%;*/
+    /*transform: rotate(42deg) translate(0.1em, 0);*/
+}
+
+/*===========side-nav================*/
+.closebtn span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    color: #818181;
+    font-size: 2.5em;
+}
+
+.closebtn span:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+/*transition: 0.5s;动画效果*/
+.sidenav {
+    /*IE*/
+    -ms-overflow-style: none;
+    /*Safari*/
+    overflow-y: scroll;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+/*去除滚动条效果，基于Chrome和Safari*/
+.sidenav::-webkit-scrollbar {
+    display: none;
+}
+
+.sidenav a {
+    width: 10em;
+    padding: 0.5em;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #a1a1a1;
+    display: block;
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+    color: #f1f1f1;
+}
+
+/*-----------加载动画-----------*/
+
+/*让fixed的布局完全居中，设置如下：
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin:auto;*/
+.loading{
+    width: 6em;
+    height: 6em;
+
+}
+.spanner-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 4em;
+    height: 4em;
+    border-radius: 0.3em;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.spanner-bg p{
+    color: white;
+    text-align: center;
+    font-size: 0.6em;
+}
+.spinner {
+    width: 2em;
+    margin: 0.4em auto;
+    height: 2em;
+}
+
+.spinner div {
+    background-color: #eee;
+    height: 100%;
+    width: 0.15em;
+    display: inline-block;
+    -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+    animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4)
+    }
+    20% {
+        -webkit-transform: scaleY(1.0)
+    }
+}
+
+@keyframes stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }
+    20% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+    }
+}

@@ -1,0 +1,66 @@
+<div id="layoutContainer">
+    <div id="Author">
+        <div class="label">基本信息</div>
+        <div id="userInfo">
+        {{with .userInfo}}
+            <img src="/static/img/profiles/{{.Profile.Portrait}}" alt="头像"/>
+            <div><p>姓名：{{.Name}}</p>
+                <p>户籍：{{.Area}}</p></div>
+        {{end}}
+        </div>
+        <div class="line"></div>
+        <div class="label">个人标签</div>
+        <div class="tags">
+            <ul>{{with .userInfo}}{{range .Tags}}
+                <li>{{.Name}}</li>{{end}}{{end}}
+            </ul>
+        </div>
+        <div class="line"></div>
+        <div class="label">我的签名</div>
+        <div class="signature">
+            <p>{{with .userInfo}}{{.Signature}}{{end}}</p>
+        </div>
+        <div class="line"></div>
+
+        <div class="label">博客生涯</div>
+        <div id="blog-life">
+        {{with .blogNums}}
+            <div class="all-publish">
+                <span>写博客:{{.BlogNums}}</span>
+                <span>发表评论:{{.PublishComments}}</span>
+                <span>获得评论:{{.ObtainComments}}</span>
+            </div>
+        {{end}}
+            <div class="all">
+                <a href="javascript:void(0);" onclick="go('/blog/works/{{with .userInfo}}{{.Phone}}{{end}}')">&lt;&lt;所有文集&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+
+    <div class="label">最新文章</div>
+    <div id="BlogLists">
+    {{range .blogInfo}}
+        <div class="listItem">
+            <ul class="title">
+                <li><a href="javascript:void(0);" onclick="appendUID(this)" articleID="{{.Id}}">{{.Title}}</a></li>
+            </ul>
+            <div class="category">
+                <ul>
+                {{range .Tags}}
+                    <li>{{.Name}}</li>
+                {{end}}
+                </ul>
+            </div>
+            <div class="commentBar">
+                <span class="user">{{.User.Name}}</span>
+                <span class="readings">{{.ReadingNums}}阅读</span>
+                <span class="comments">{{.CommentNums}}评论</span>
+                <span class="publishTime">{{.Created}}</span>
+            </div>
+        </div>
+    {{end}}
+        <p class="end">-----------展示最近发表的15篇博客-----------</p>
+    </div>
+</div>
+

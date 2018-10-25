@@ -1,0 +1,251 @@
+.LayoutContainer {
+    padding: 0 2.5%;
+    margin: 0 auto;
+    min-height: 50em;
+    min-width: 20em;
+}
+
+.article-div {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.title {
+    padding: 0.3em 0;
+    max-width: 20em;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.info-div {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+.tag-div {
+    max-width: 14em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tag-div span {
+    padding: 0.3em 0.5em;
+    text-align: center;
+    font-size: 0.8em;
+    margin: 0 0.3em;
+    background-color: rgba(240, 246, 177, 0.55);
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 5em;
+}
+
+.user {
+    color: grey;
+    text-align: center;
+    font-style: oblique;
+    margin-right: 0.3em;
+    font-size: 0.9em;
+}
+
+.date {
+    color: grey;
+    font-style: oblique;
+    margin-right: 0.3em;
+    font-size: 0.9em;
+}
+.folder{
+    width: 0.8em;
+    height: 0.8em;
+
+}
+.work {
+    font-size: 0.8em;
+}
+
+.work a:hover {
+    color: #ff6700;
+}
+
+.line {
+    margin: 1.5em auto;
+    width: 60%;
+    height: 0.06em;
+    background-color: #e7e6e2;
+}
+
+.label {
+    width: 70%;
+    min-width: 20em;
+    margin: 0 auto;
+}
+
+.end-content {
+    margin: 1em 0;
+    text-align: center;
+    color: gray;
+}
+
+.cmtlist-div {
+    width: 70%;
+    min-width: 20em;
+    border-top: 0.05em solid #e7e6e2;
+    margin: 1em auto;
+}
+
+.content {
+    text-align: center;
+    width: 70%;
+    min-width: 20em;
+    margin: 0 auto;
+    padding: 1em 0;
+    min-height: 40em;
+}
+
+.content li {
+    text-align: left;
+    padding: 1em 0;
+    list-style: circle;
+}
+
+.content li ul li {
+    margin-left: 1em;
+    list-style: decimal;
+}
+
+pre {
+    text-align: left;
+    min-width: 16em;
+    border-left: 0.5em solid grey;
+    padding: 1em 1em 1em 0.8em;
+    overflow: auto;
+    color: #f1f1f1;
+    background-color: #282c34;
+    word-wrap: break-word;
+}
+
+/*.content pre {
+    text-align: left;
+    min-width: 16em;
+    border-left: 0.5em solid grey;
+    padding: 1em 1em 1em 0.8em;
+    overflow: auto;
+    color: #f1f1f1;
+    background-color: #282c34;
+    word-wrap: break-word;
+}*/
+
+/*    word-wrap: break-word;让超链接和长文本自动换行
+*/
+.content a {
+    color: grey;
+    word-wrap: break-word;
+}
+
+.centent img {
+    text-align: center;
+}
+
+.content pre::-webkit-scrollbar {
+    display: none;
+}
+
+/*    word-break: break-all;
+拆分整个单词并换行
+*/
+.content p {
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 1em 0;
+}
+
+.content h1, .content h2, .content h3 {
+    text-align: left;
+    padding: 0.5em 0;
+}
+
+.comment-div {
+    width: 70%;
+    min-width: 20em;
+    margin: 1em auto;
+}
+
+.comment-div textarea {
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    min-width: 18em;
+    max-width: 60em;
+    height: 6em;
+}
+
+/*outline:none，去除button获取焦点的边框*/
+#btnComment {
+    margin-top: 1em;
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    border: none;
+    outline: none;
+    background-color: #cbcbcb;
+}
+
+#btnComment:hover {
+    cursor: pointer;
+}
+
+.cmtNum {
+    margin-bottom: 2em;
+}
+
+.cmtNum span {
+    font-size: 0.8em;
+    margin-right: 1em;
+    font-weight: 500;
+}
+
+.cmtNum label {
+    color: blue;
+}
+
+.cmtItem-div {
+    width: auto;
+    margin-top: 0.5em;
+    height: 2.6em;
+}
+
+.cmtItem-div img {
+    float: left;
+    width: 2em;
+    height: 2em;
+    padding: 0.3em 0;
+}
+
+.cmtInfo {
+    padding: 0.1em 0;
+    float: left;
+    margin-left: 0.5em;
+
+}
+
+.cmtInfo p {
+    font-size: 0.8em;
+    font-weight: 500;
+    max-width: 10em;
+}
+
+.cmtInfo span {
+    color: gray;
+    font-size: 0.6em;
+}
+
+.cmtContent {
+    padding: 0.5em 0 2em 0.5em;
+    font-size: 0.8em;
+    /*border-bottom: 0.05em solid #eee;*/
+    margin-top: 0.5em;
+}

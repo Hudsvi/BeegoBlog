@@ -1,0 +1,201 @@
+#layoutContainer {
+    width: 70%;
+    margin: 0 auto;
+    min-width: 20em;
+    min-height: 30em;
+    padding:0 0.5em  ;
+
+}
+
+/*博主栏*/
+#Author {
+    width: 100%;
+    overflow: auto;
+    border-radius: 0.2em;
+    box-shadow: 0.05em 0.05em 0.1em 0.1em rgba(104,102,103,0.5);
+}
+
+#userInfo {
+    font-size: 0.8em;
+    width: 14em;
+    margin: 2em auto;
+    overflow: auto;
+}
+
+#userInfo img {
+    float: left;
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+}
+
+#userInfo div {
+    margin-left: 1em;
+    display: inline-block;
+    float: left;
+}
+
+#userInfo div p {
+    height: 1.5em;
+    line-height: 1.5em;
+}
+
+#Author .tags {
+    font-size: 0.8em;
+    width: 15em;
+    margin: 2em auto;
+    overflow: auto;
+}
+
+#Author .tags ul {
+    list-style: none;
+}
+
+#Author ul li {
+    float: left;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    margin: 0.25em;
+    background-color: rgba(228, 227, 205, 0.5);
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 4.5em;
+
+}
+
+.signature {
+    width: 20em;
+    font-size: 0.8em;
+    margin: 2em auto;
+}
+
+.signature p {
+    text-align: left;
+}
+
+#blog-life {
+    font-size: 0.8em;
+    margin: 2em auto;
+    overflow: auto;
+}
+
+#blog-life .all-publish {
+    text-align: center;
+}
+
+#blog-life .all-publish span {
+    padding: 0.2em;
+}
+
+#blog-life .all-publish label {
+    color: black;
+}
+
+#blog-life .all a:hover {
+    color: #ff6700;
+}
+#blog-life .all {
+    margin: 1em auto;
+    text-align: center;
+}
+
+/*博客列表*/
+#BlogLists {
+    border-radius: 0.2em;
+    box-shadow: 0.05em 0.05em 0.1em 0.1em rgba(104,102,103,0.5);
+    overflow: auto;
+    margin-bottom: 4em;
+}
+
+#layoutContainer .label {
+    text-align: center;
+    font-size: 0.9em;
+    margin: 1em 0;
+}
+
+#layoutContainer .label-left {
+    text-align: left;
+    font-size: 0.9em;
+    margin: 1em 0;
+}
+
+.line {
+    width: 100%;
+    height: 0.07em;
+    background-color: #f1f1f1;
+}
+
+#BlogLists .listItem {
+    overflow: auto; /*让div自适应高度*/
+    margin: 0 auto;
+    padding: 1em 0 0.5em 1em;
+    border-bottom: 1px solid #eee;
+}
+
+#BlogLists .listItem .title {
+    font-size: 1em;
+}
+
+#BlogLists .listItem .title li {
+    margin-left: 1.2em;
+}
+
+#BlogLists .listItem .title li a {
+    text-decoration: none;
+    color: black;
+}
+
+#BlogLists .listItem .title li a:hover {
+    color: #ff6700;
+}
+
+#BlogLists .listItem .category {
+    width: 12em;
+    padding: 0.4em 0.8em;
+    overflow: auto; /*让div自适应高度*/
+}
+
+#BlogLists .listItem .category ul {
+    list-style: none;
+}
+
+#BlogLists .listItem .category ul li {
+    font-size: 0.8em;
+    padding: 0.2em;
+    color: grey;
+    margin: 0.2em 0.4em;
+    background-color: rgba(246, 244, 210, 0.55);
+    float: left;
+}
+
+#BlogLists .listItem .commentBar {
+    padding: 0 1em;
+    width: 100%;
+    height: 2em;
+    float: left;
+}
+
+#BlogLists .listItem .commentBar span {
+    font-size: 0.6em;
+    color: grey;
+}
+
+#BlogLists .listItem .commentBar .user {
+    font-style: oblique;
+    font-size: 0.7em;
+    margin-right: 0.5em;
+}
+
+#BlogLists .listItem .commentBar .publishTime {
+    color: grey;
+}
+
+.end {
+    color: gray;
+    font-size: 0.8em;
+    text-align: center;
+    margin: 1em auto;
+}

@@ -1,0 +1,226 @@
+<div class="LayoutContainer">
+    <div class="left">
+        <!--<div class="leftAdd">
+            <span>创建新的文集</span><img src="/static/img/add.png"/>
+        </div>-->
+        <!--<div class="line"></div>-->
+        <ul class="leftItem" id="work">
+        {{range $index,$work := .works}}
+        {{if eq $index 0}}
+        {{/*works总不为空，默认包含《所有文集》*/}}
+            <li onclick="go('/blog/works/{{$work.Work.User.Phone}}?work_id=-1')"
+                style="margin-bottom: 0.5em;border-bottom: 0.05em solid lightgrey;font-size: 1.2em;background-color: #818181;">
+            {{/*<img src="/static/img/folder.png"/>*/}}
+                <a style="padding-left: 0;margin-left: 0;color: #f1f1f1;">所有文集({{$work.Num}})</a>
+            </li>
+        {{else}}
+            <li onclick="go('/blog/works/{{$work.Work.User.Phone}}?work_id={{$work.Work.Id}}')">
+                <img src="/static/img/folder.png"/>
+                <a>{{$work.Work.Name}}({{$work.Num}})</a>
+                <!--<input class="editName" type="button" onclick="editName()"/>
+                <input class="deleteWork" type="button" onclick="deleteWork()"/>-->
+            </li>
+        {{end}}
+        {{end}}
+        </ul>
+    </div>
+    <div id="BlogLists">
+        <div class="label">博客列表</div>
+        <div class="line"></div>
+    {{range .blogList}}
+        <div class="blogItem">
+            <ul class="title">
+                <li><a href="javascript:void(0);" onclick="appendUID(this)" articleID="{{.Id}}">{{.Title}}</a></li>
+            </ul>
+            <div class="category">
+                <ul>
+                {{range .Tags}}
+                    <li>{{.Name}}</li>
+                {{end}}
+                </ul>
+            </div>
+            <div class="commentBar">
+                <span class="user">{{.User.Name}}</span>
+                <span class="readings">{{.ReadingNums}}阅读</span>
+                <span class="comments">{{.CommentNums}}评论</span>
+                <span class="publishTime">{{.Created}}</span>
+            </div>
+        </div>
+    {{end}}
+        <div class="page-div" id="page-div">
+            <ul id="page-ul-width">{{/*本页面自定义模板函数的位置：/Blog/utils/funcmap/work.go。函数各参数的含义在定义时均有说明。*/}}
+            {{with .pageInfo}}{{/*页码占有5个栏位，上下翻页占有两个栏位，一共7个栏位，下面就如何显示这些栏位给出基本定义。*/}}
+
+            {{if .FirstPage}}{{/*第一个栏位“上一页”，如果是首页FirstPage，那么该栏位禁止使用。*/}}
+                <li style="float: left;"><a class="forbid" href="javascript:void(0);" style="margin:0 0.1em 0 0;">上一页</a></li>
+            {{else}}
+                <li style="float: left;"><a class="normal" tabindex="0"
+                                            onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{sub_n .CurrentPage 1}}')"
+                                            style="margin: 0;">上一页</a></li>
+            {{end}}
+                <script>
+                    /*必须在页面加载完之后进行下面的操作。*/
+                    window.onload = function () {
+                    {{if eq .TotalPage 0}}
+                        document.getElementById("page-ul-width").style.width = "14em";
+                        document.getElementById("page-div").style.marginTop = "15em";
+                    {{else}}
+                        var pages = document.getElementsByClassName("normal");
+                        for (var i = 0; i < pages.length; i++) {
+                            if (pages[i].innerHTML =={{.CurrentPage}}) {
+                                pages[i].setAttribute("class", "normal2");
+                                break;
+                            }
+                        }
+                        /*页码布局的宽度，根据页码编号的大小进行适当的修改。*/
+                    {{if le .TotalPage 5}}//小于等于5
+                        var w = 8 + parseFloat({{.TotalPage}}) * 1.6;
+                        document.getElementById("page-ul-width").style.width = w + "em";
+                    {{else if le  .TotalPage 10}}//小于10
+                        document.getElementById("page-ul-width").style.width ="16.5em";
+                    {{else if le  .TotalPage 11}}//小于等于11
+                        document.getElementById("page-ul-width").style.width = "17em";
+                    {{else if lt  .TotalPage 100}}//小于100
+                        document.getElementById("page-ul-width").style.width = "18em";
+                    {{else if eq  .TotalPage 100}}//等于100
+                        document.getElementById("page-ul-width").style.width = "18.5em";
+                    {{else if le  .TotalPage 999}}//小于等于999
+                        document.getElementById("page-ul-width").style.width = "20.5em";
+                    {{end}}
+                    {{end}}
+                    };
+                </script>
+            {{if eq .TotalPage 0}}
+                <span class="empty">没有任何博客</span>
+            {{else if eq .TotalPage 1}}{{/*第1-5个页码栏位，总页码数TotalPage为1-5时，判断是否完全显示这5个页码，如TotalPage=1，
+            则只使用一个页码位*/}}
+                <li><a class="normal2">1</a></li>
+            {{else if eq .TotalPage 2}}
+                <li><a{{if ne .CurrentPage 1}}
+                onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')"{{end}}
+                class="normal" tabindex="0">1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                {{if ne .CurrentPage 2}}
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')"{{end}}>2</a>
+                </li>
+            {{else if eq .TotalPage 3}}
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 1}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')"{{end}}>1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 2}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')"{{end}}>2</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 3}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=3')"{{end}}>3</a>
+                </li>
+            {{else if eq .TotalPage 4}}
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 1}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')"{{end}}>1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 2}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')"{{end}}>2</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 3}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=3')"{{end}}>3</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 4}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=4')"{{end}}>4</a>
+                </li>
+            {{else if eq .TotalPage 5}}
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 1}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')"{{end}}>1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 2}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')"{{end}}>2</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 3}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=3')"{{end}}>3</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 4}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=4')"{{end}}>4</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 5}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=5')"{{end}}>5</a>
+                </li>
+            {{else}}{{/*总页码TotalPage>5时，前3个栏位显示的页码信息*/}}
+            {{if le .CurrentPage 3}}{{/*当前页CurrentPage<=3,则前3页按1，2，3显示*/}}
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 1}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')"{{end}}>1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 2}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')"{{end}}>2</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       {{if ne .CurrentPage 3}}onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=3')"{{end}}>3</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{sub_n .TotalPage 1}}')">{{sub_n .TotalPage 1}}</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{.TotalPage}}')">{{.TotalPage}}</a>
+                </li>
+            {{else}}{{/*当前页CurrentPage>3,第二个页码位取中显示。*/}}
+            {{if ge_n .TotalPage .CurrentPage 2}}{{/*此if用于保证TotalPage-CurrentPage不会比2小，
+                    也就是后三页至少是连续的页码，比如：总页码TotalPage为6，而当前页码CurrentPage=5，
+                    会出现5，5，6这种显示的情况，而TotalPage-CurrentPage>=2不会出现这种情况。*/}}
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')">1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{middle 1 .CurrentPage}}')">{{middle 1 .CurrentPage}}</a>
+                </li>
+                <li><a class="normal" tabindex="0">{{.CurrentPage}}</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{middle .CurrentPage .TotalPage}}')">{{middle .CurrentPage .TotalPage}}</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{.TotalPage}}')">{{.TotalPage}}</a>
+                </li>
+            {{else if ge_n .TotalPage .CurrentPage 1}}{{/*当前页CurrentPage为倒数第二页*/}}
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')">1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')">2</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{middle 1 .TotalPage}}')">{{middle 1 .TotalPage}}</a>
+                </li>
+                <li><a class="normal" tabindex="0" }}>{{.CurrentPage}}</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{.TotalPage}}')">{{.TotalPage}}</a>
+                </li>
+            {{else}}{{/*当前页CurrentPage为最后一页*/}}
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=1')">1</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page=2')">2</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{middle 1 .TotalPage}}')">{{middle 1 .TotalPage}}</a>
+                </li>
+                <li><a class="normal" tabindex="0"
+                       onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{sub_n .TotalPage 1}}')">{{sub_n .TotalPage 1}}</a>
+                </li>
+                <li><a class="normal" tabindex="0">{{.CurrentPage}}</a>
+                </li>
+            {{end}}
+            {{end}}
+            {{end}}
+            {{if .LastPage}}{{/*原理同上一页*/}}
+                <li style="float: right;"><a class="forbid" href="javascript:void(0);" style="margin: 0;">下一页</a></li>
+            {{else}}
+                <li style="float: right;"><a class="normal" tabindex="0"
+                                             onclick="go('/blog/works/{{.UID}}?work_id={{.WorkID}}&page={{sub_n .CurrentPage -1}}')"
+                                             style="margin: 0;">下一页</a></li>
+            {{end}}
+            {{end}}
+            </ul>
+        </div>
+    </div>
+
+</div>

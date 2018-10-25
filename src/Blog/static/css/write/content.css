@@ -1,0 +1,93 @@
+/* 增加插入代码工具图标 */
+.btnCode {
+    background: transparent url(/static/img/xheditor/code.png) no-repeat 0 0;
+    background-position: 2px 3px;
+}
+
+.LayoutContainer {
+    width: 70%;
+    min-height: 50em;
+    min-width: 20em;
+    margin: 0 auto;
+}
+
+.draft-box {
+    height: 2em;
+    margin: 1em;
+    text-align: right;
+}
+#draft-btn:hover{
+    cursor: pointer;
+    background-color: #ccc;
+}
+#draft-num{
+    margin-left: 0.2em;
+    color: red;
+}
+.blogTitle {
+    min-width: 15em;
+    width: 100%;
+    font-size: 1.2em;
+    margin: 1em 0;
+    padding: 0.8em 0;
+}
+
+.taBottom {
+    margin-top: 1em;
+}
+
+#tags-div {
+    display: block;
+    max-height: 10em;
+    overflow: auto;
+    margin-top: 1em;
+}
+#tags-div p{
+    padding: 0.5em 0;
+}
+.tagContent {
+    height: 2em;
+    line-height: 2em;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.tagLabel {
+    margin: 1.5em 0;
+    font-size: 0.8em;
+}
+
+.tagItem {
+    margin: 0.5em;
+}
+
+.blogCategory {
+    padding: 1em 0;
+}
+
+.selectItem {
+    width: 8em;
+    padding: 0.4em;
+    font-size: 0.8em;
+}
+
+.publish {
+    margin-top: 1em;
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 0.2em;
+    background-color: #EEC068;
+    outline: none;
+}
+
+.saveDraft {
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 0.2em;
+    background-color: #EEC068;
+    outline: none;
+}
+
+.publish, .saveDraft :hover {
+    cursor: pointer;
+}

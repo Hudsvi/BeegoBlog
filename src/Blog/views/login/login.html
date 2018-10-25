@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/static/css/login/dialog.css"/>
+</head>
+<body><h2> Modal Login Form</h2>
+<button onclick="showDialog()">登录</button>
+<div id="dialog" class="modal">
+    <form class="modal-content animate" action="/blog/login">
+        <div><span onclick="document .getElementById('dialog') .style.display='none'" class="close" title="Close Modal"> &times;</span>
+        </div>
+        <div class="container">
+            <label><b>用户名</b></label> <input type="text" placeholder="手机号" name="uname" required>
+            <label><b>密码</b></label> <input type="password" placeholder="密码" name="psw" required>
+            <button type="submit">登录</button>
+            <input type="checkbox" checked="checked">记住账号密码</input>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById ('dialog').style. display='none'" class="cancelbtn">
+                取消
+            </button>
+            <span class="psw">忘记 <a href=" ">password? </a></span></div>
+    </form>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById('dialog');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function showDialog() {
+        modal.style.display = 'block';
+        modal.style.width = "auto 0"
+    }
+</script>
+</body>
+</html>

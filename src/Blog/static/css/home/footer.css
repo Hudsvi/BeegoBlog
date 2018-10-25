@@ -1,0 +1,45 @@
+.footer {
+    width: 100%;
+    background-color: black;
+    margin-top: 4em;
+    padding: 1em 0 0.5em 0;
+    overflow: auto;
+    float: left;
+}
+.f-box{
+    width: 70%;
+    min-width: 20em;
+    margin: 0 auto;
+}
+.footer .aboutme {
+    margin: 0 auto;
+}
+
+.footer .aboutme ul {
+    list-style: none;
+    overflow: auto;
+}
+
+.footer .aboutme ul li {
+    float: left;
+    padding: 0.3em;
+
+}
+
+.footer .aboutme ul li a {
+    color: #f6f6f6;
+}
+
+.footer .aboutme ul li a:hover {
+    color: #ff6700;
+}
+
+.footer .copyright{
+    padding: 0 0.3em;
+    margin: 0.5em auto;
+}
+.footer .copyright span {
+    color: #f6f6f6;
+}
+
+

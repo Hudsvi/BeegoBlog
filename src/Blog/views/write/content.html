@@ -1,0 +1,51 @@
+<div class="draft-box">
+    <div>
+        <button id="draft-btn">草稿箱</button>
+        <label id="draft-num">{{.draftNums}}</label></div>
+</div>
+<div class="LayoutContainer">
+    <form id="formWrite" action="/blog/publish">
+    {{/*标题部分*/}}
+            <input class="blogTitle" type="text" name="blogTitle" placeholder="输入标题" pattern="^\S*$" required
+                   oninvalid="setCustomValidity('请正确输入标题内容！')" oninput="setCustomValidity('')"
+                   id="blogTitle"/>
+    {{/*正文部分*/}}
+        <div>
+            <textarea id="myContent" name="myContent"></textarea>
+            <div class="taBottom">
+                <input type="button" value="清空" onclick="clearContent()"/>
+            </div>
+        </div>
+    {{/*标签部分*/}}
+        <div class="tagContent">
+            <label class="tagLabel">筛选：</label>
+        {{/*不用提交*/}}
+            <select class="selectItem" onchange="filterTag(this)">
+                <option value="0" selected="selected">请选择</option>
+            {{range .parentList}}
+                <option value="{{.Id}}">{{.Name}}</option>
+            {{end}}
+            </select>
+        </div>
+
+        <div id="tags-div">
+        {{range .tagList}}
+            <p><input type="checkbox" name="cbox-tag" value="{{.Id}}" parent-id="{{.ParentId}}">{{.Name}}</p>
+        {{end}}
+        </div>
+
+        <div class="blogCategory">
+            <span class="tagLabel">发表到文集：</span>
+            <select class="selectItem" id="workId" name="workId">
+                <option value="-1">请选择</option>
+            {{range .workList}}
+                <option value="{{.Id}}">{{.Name}}</option>
+            {{end}}
+            </select>
+        </div>
+        <div>
+            <input class="publish" type="button" value="发表" onclick="publish()"/>
+            <input class="saveDraft" type="button" value="保存为草稿" onclick="saveAsDraft()"/>
+        </div>
+    </form>
+</div>
