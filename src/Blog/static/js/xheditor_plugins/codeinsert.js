@@ -9,7 +9,7 @@ $(function () {
                     jSave = $('#xheSave', jCode);
                 jSave.click(function () {
                     _this.loadBookmark();
-                    _this.pasteText('<pre>'+jValue.val()+'</pre>');
+                    _this.pasteText('<pre>\r\n'+jValue.val()+'\r\n');
                     _this.hidePanel();
                     return false;
                 });
