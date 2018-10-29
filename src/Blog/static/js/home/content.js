@@ -7,7 +7,7 @@ function generateUUID() {
         return (c ==='x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
-};
+}
 
 //
 function appendUID(obj) {
