@@ -4,8 +4,8 @@ import (
 	"Blog/models"
 	"Blog/models/write"
 	"github.com/astaxie/beego"
-	"log"
 	"strconv"
+	"time"
 )
 
 type PublishBlogController struct {
@@ -22,7 +22,17 @@ func (c *PublishBlogController) Post() {
 	var workId int
 	var draft *models.Draft
 	var post *models.Post
-	var action = c.GetString("action", "")
+	var action = c.GetString("action", "")                 //判断是保存草稿还是
+	var created = time.Now().Format("2006-01-02") //创建时间,String()方法是完整格式化输出
+	blogTitle = c.GetString("blogTitle", "")
+	blogContent = c.GetString("myContent", "")
+	workId, _ = c.GetInt("workId", -1)
+	if workId == -1 {
+		c.Abort("404")
+	}
+
+	c.Ctx.Request.ParseForm()
+	ts := c.Ctx.Request.Form["cbox-tag"] //包含tags参数的多个值
 
 	//存草稿
 	if action == "save" {
@@ -32,14 +42,6 @@ func (c *PublishBlogController) Post() {
 			Tags: []*models.Tag{},
 		}
 
-		blogTitle = c.GetString("blogTitle", "")
-		blogContent = c.GetString("blogContent", "")
-		workId, _ = c.GetInt("workId", -1)
-		if workId == -1 {
-			c.Abort("404")
-		}
-		c.Ctx.Request.ParseForm()
-		ts := c.Ctx.Request.Form["tags"] //包含tags参数的多个值
 		if ts != nil && len(ts) != 0 {
 			for i := 0; i < len(ts); i++ {
 				id, _ := strconv.Atoi(ts[i])
@@ -52,6 +54,7 @@ func (c *PublishBlogController) Post() {
 		draft.Title = blogTitle
 		draft.Content = blogContent
 		draft.Work.Id = workId
+		draft.Created = created
 		draft.User.Phone = "13594777290"
 
 		write.SaveDraft(draft)
@@ -62,7 +65,24 @@ func (c *PublishBlogController) Post() {
 			Work: &models.Work{},
 			Tags: []*models.Tag{},
 		}
-		log.Println(post)
+		if ts != nil && len(ts) != 0 {
+			for i := 0; i < len(ts); i++ {
+				id, _ := strconv.Atoi(ts[i])
+				//特别要注意切片的赋值方式，不能用数组tags[i]=...这种初始化。
+				post.Tags = append(post.Tags, &models.Tag{Id: id})
+			}
+		} else {
+			c.Abort("404")
+		}
+		post.Title = blogTitle
+		post.Content = blogContent
+		post.Created=created
+		post.Work.Id = workId
+		post.User.Phone = "13594777290"
+
+		write.Publish(post)
+	} else {
+		c.Abort("404") //action不是上面两种
 	}
 
 }

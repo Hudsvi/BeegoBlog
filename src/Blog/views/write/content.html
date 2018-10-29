@@ -4,7 +4,7 @@
         <label id="draft-num">{{.draftNums}}</label></div>
 </div>
 <div class="LayoutContainer">
-    <form id="formWrite" action="/blog/publish">
+    <form id="formWrite" onsubmit="return checkForm()">
     {{/*标题部分*/}}
             <input class="blogTitle" type="text" name="blogTitle" placeholder="输入标题" pattern="^\S*$" required
                    oninvalid="setCustomValidity('请正确输入标题内容！')" oninput="setCustomValidity('')"
@@ -21,7 +21,7 @@
             <label class="tagLabel">筛选：</label>
         {{/*不用提交*/}}
             <select class="selectItem" onchange="filterTag(this)">
-                <option value="0" selected="selected">请选择</option>
+                <option value="0" selected="selected">（可选）</option>
             {{range .parentList}}
                 <option value="{{.Id}}">{{.Name}}</option>
             {{end}}
@@ -43,9 +43,9 @@
             {{end}}
             </select>
         </div>
-        <div>
-            <input class="publish" type="button" value="发表" onclick="publish()"/>
-            <input class="saveDraft" type="button" value="保存为草稿" onclick="saveAsDraft()"/>
+        <div>{{/*追加参数action,用于区分当前的提交是保存草稿还是正式发表。=save表示保存草稿，=publish表示发表。*/}}
+            <input class="publish" type="button" value="发表" onclick="postBlog('publish')"/>
+            <input class="saveDraft" type="button" value="保存为草稿" onclick="postBlog('save')"/>
         </div>
     </form>
 </div>

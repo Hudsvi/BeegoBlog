@@ -46,10 +46,11 @@ type Draft struct {
 	Id      int    `orm:"auto;size(10)"`
 	Title   string `orm:"size(100)"`
 	Content string `orm:"type(text)"`
+	Created string `orm:"auto_now_add;type(date)"`
 
-	User *User  `orm:"rel(fk)"`
-	Tags []*Tag `orm:"rel(m2m)"`
-	Work *Work  `orm:"rel(fk)"`
+	User    *User  `orm:"rel(fk)"`
+	Tags    []*Tag `orm:"rel(m2m)"`
+	Work    *Work  `orm:"rel(fk)"`
 }
 
 type Tag struct {

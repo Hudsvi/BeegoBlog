@@ -115,6 +115,10 @@
     margin-left: 1em;
     list-style: decimal;
 }
+.content li ol li {
+    margin-left: 1em;
+    list-style: decimal;
+}
 
 pre {
     text-align: left;

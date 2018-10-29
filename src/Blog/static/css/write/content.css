@@ -39,6 +39,7 @@
 #tags-div {
     display: block;
     max-height: 10em;
+    background-color: #f6f6f6;
     overflow: auto;
     margin-top: 1em;
 }
