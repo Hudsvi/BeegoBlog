@@ -25,8 +25,10 @@
   
 （2）model/models.go  
  
-    该文件中的一系列struct决定了表的结构，包括表名、依赖关系和约束等。想了解更多，请参阅[beego作者谢孟军的官网](https://beego.me/docs/intro/)  
-   
+    该文件中的一系列struct决定了表的结构，包括表名、依赖关系和约束等。字段名最好用驼峰命名，orm会自动帮你转“_”），博客中有个Created字段，orm type为date，对应类型应该是time.Time，而我为了方便显示，created定义的类型是string,生成表时，created字段变为varchar，所以你得手动修改。  
+	
+另外想了解更多，请参阅[beego谢孟军的官网](https://beego.me/docs/intro/)  
+	
 3.当前版本是发布版，所以runmode=prod,并且日志控制级别设置为2（事先定义1为dev,2为prod），如果想变更这些参数，可分别在conf/app.conf和utils/log/log.go中进行调整。  
 
 ## 关于xhEditor编辑器
@@ -36,3 +38,6 @@
 
 2.添加插入代码插件，pre标签的样式已经在css文件中定义，简化了代码的展示。
 
+改动后：  
+
+开启强制<p>标签。
